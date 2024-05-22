@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RingtonesService, RingtoneSchedule } from '../ringtones.service';
 
 @Component({
   selector: 'app-ringtones',
-  standalone: true,
-  imports: [],
   templateUrl: './ringtones.component.html',
-  styleUrl: './ringtones.component.scss'
+  styleUrls: ['./ringtones.component.css']
 })
-export class RingtonesComponent {
+export class RingtonesComponent implements OnInit {
+  schedules: RingtoneSchedule[] = [];
 
+  constructor(private ringtonesService: RingtonesService) { }
+
+  ngOnInit(): void {
+    this.ringtonesService.getSchedules().subscribe(schedules => {
+      this.schedules = schedules;
+    });
+  }
+
+  saveSchedule(schedule: RingtoneSchedule): void {
+    this.ringtonesService.saveSchedule(schedule).subscribe(newSchedule => {
+      this.schedules.push(newSchedule);
+    });
+  }
 }

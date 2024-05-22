@@ -1,1 +1,22 @@
-<p>ringtones works!</p>
+<div>
+    <h1>Ringtone Schedule</h1>
+    <form #ringtoneForm="ngForm" (ngSubmit)="saveSchedule(ringtoneForm.value)">
+      <label>Title:</label>
+      <input type="text" name="title" ngModel>
+      <label>File Name:</label>
+      <input type="text" name="fileName" ngModel>
+      <label>Start Date:</label>
+      <input type="date" name="startDate" ngModel>
+      <label>End Date:</label>
+      <input type="date" name="endDate" ngModel>
+      <label>Recurring:</label>
+      <input type="checkbox" name="recurring" ngModel>
+      <button type="submit">Save</button>
+    </form>
+    <ul>
+      <li *ngFor="let schedule of schedules">
+        {{ schedule.title }} - {{ schedule.fileName }} - {{ schedule.startDate | date }} - {{ schedule.endDate | date }} - {{ schedule.recurring }}
+      </li>
+    </ul>
+  </div>
+  
