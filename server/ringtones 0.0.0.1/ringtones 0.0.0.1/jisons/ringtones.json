@@ -1,0 +1,28 @@
+{
+  "ringtones": [
+    {
+      "name": "Classic Ring",
+      "from_date": "2024-05-13",
+      "to_date": "2024-06-13",
+      "from_hour": "08:00",
+      "to_hour": "18:00",
+      "duration": "0:30"
+    },
+    {
+      "name": "Chimes",
+      "from_date": "2024-05-13",
+      "to_date": "2024-06-13",
+      "from_hour": "10:00",
+      "to_hour": "20:00",
+      "duration": "0:25"
+    },
+    {
+      "name": "Jazz Tune",
+      "from_date": "2024-05-13",
+      "to_date": "2024-06-13",
+      "from_hour": "12:00",
+      "to_hour": "22:00",
+      "duration": "0:35"
+    }
+  ]
+}

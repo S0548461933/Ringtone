@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ringtones_0._0._0._1</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
+ public class Ringtone
+    {
+        public string name { get; set; }
+        public string from_date { get; set; }
+        public string to_date { get; set; }
+        public string from_hour { get; set; }
+        public string to_hour { get; set; }
+        public string duration { get; set; }
+        public int duration_seconds { get; set; }
+    }
+
+    public class Root
+    {
+        public List<Ringtone> ringtones { get; set; }
+    }
+
+public class Ringtone
+{
+public string name { get; set; }
+public string from_date { get; set; }
+public string to_date { get; set; }
+public string from_hour { get; set; }
+public string to_hour { get; set; }
+public string duration { get; set; }
+public int duration_seconds { get; set; }
+}
+
+public class Root
+{
