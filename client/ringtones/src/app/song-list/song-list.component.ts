@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SongService } from '../song.service';
 
 @Component({
   selector: 'app-song-list',
-  standalone: true,
-  imports: [],
   templateUrl: './song-list.component.html',
-  styleUrl: './song-list.component.scss'
+  styleUrls: ['./song-list.component.css']
 })
-export class SongListComponent {
+export class SongListComponent implements OnInit {
+  songs: any[] = [];
 
+  constructor(private songService: SongService) { }
+
+  ngOnInit(): void {
+    this.songService.getSongs().subscribe(data => {
+      this.songs = data;
+    });
+  }
 }
