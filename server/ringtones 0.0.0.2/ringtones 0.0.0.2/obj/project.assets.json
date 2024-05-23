@@ -4843,11 +4843,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\ringtones 0.0.0.2.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\ringtones 0.0.0.2.csproj",
       "projectName": "ringtones 0.0.0.2",
-      "projectPath": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\ringtones 0.0.0.2.csproj",
+      "projectPath": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\ringtones 0.0.0.2.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\פרויקטים\\מערכת צלצולים\\S0548461933\\Ringtone\\Ringtone\\server\\ringtones 0.0.0.2\\ringtones 0.0.0.2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

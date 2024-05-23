@@ -1,40 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("[controller]")]
 public class RingtonesController : ControllerBase
 {
-    private readonly string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ringtone-schedule.json");
-
-    [HttpGet]
-    public async Task<IActionResult> GetSchedules()
+    [HttpGet("songs")]
+    public IActionResult GetSongs()
     {
-        var json = await System.IO.File.ReadAllTextAsync(jsonFilePath);
-        var schedules = JsonConvert.DeserializeObject<List<RingtoneSchedule>>(json);
-        return Ok(schedules);
+        var json = System.IO.File.ReadAllText("Data/songs.json");
+        var songs = JsonSerializer.Deserialize<List<Song>>(json);
+        return Ok(songs);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> SaveSchedule([FromBody] RingtoneSchedule schedule)
-    {
-        var json = await System.IO.File.ReadAllTextAsync(jsonFilePath);
-        var schedules = JsonConvert.DeserializeObject<List<RingtoneSchedule>>(json) ?? new List<RingtoneSchedule>();
-        schedules.Add(schedule);
-        await System.IO.File.WriteAllTextAsync(jsonFilePath, JsonConvert.SerializeObject(schedules));
-        return Ok(schedule);
-    }
+    // Add similar methods for schedules and holidays
 }
 
-public class RingtoneSchedule
+public class Song
 {
+    public int Id { get; set; }
     public string Title { get; set; }
-    public string FileName { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
-    public bool Recurring { get; set; }
+    public string Url { get; set; }
 }

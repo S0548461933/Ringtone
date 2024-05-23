@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ringtones 0.0.0.2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fc08631af07ff469af81e146196aec813a56727")]
 [assembly: System.Reflection.AssemblyProductAttribute("ringtones 0.0.0.2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ringtones 0.0.0.2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
