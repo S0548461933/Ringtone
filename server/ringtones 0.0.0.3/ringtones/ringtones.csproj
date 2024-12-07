@@ -204,7 +204,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Playlists.json" />
     <None Include="Ringtones\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>

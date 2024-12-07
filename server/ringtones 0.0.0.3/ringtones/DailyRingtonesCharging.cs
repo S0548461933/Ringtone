@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace ringtones
 {
     public class DailyRingtonesCharging
@@ -29,7 +28,7 @@ namespace ringtones
             // קריאת הקובץ JSON
             if (!File.Exists(FilePath))
             {
-                throw new FileNotFoundException("The specified file was not found.", FilePath);
+                   throw new FileNotFoundException("The specified file was not found.", FilePath);
             }
             string json = File.ReadAllText(FilePath);
             List<Data> dataList = JsonConvert.DeserializeObject<List<Data>>(json);
