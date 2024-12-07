@@ -1,0 +1,48 @@
+.hebrew-day {
+    text-align: right;
+    padding: 0.25rem 0.65rem 0.25rem 0.25rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    height: 2.75rem;
+    width: 2.75rem;
+}
+.hebrew-day:hover,
+.hebrew-day.focused {
+    background-color: #e6e6e6;
+}
+.hebrew-day.selected {
+    background-color: #007bff;
+    color: white;
+}
+.outside {
+    color: lightgray;
+}
+.gregorian-num {
+    font-size: 0.5rem;
+    direction: ltr;
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+    }
+
+
+    .custom-day {
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+      }
+      
+      .start-of-month {
+        background-color: #c3e6cb; /* ירוק בהיר */
+        font-weight: bold;
+        border: 1px solid #28a745;
+      }
+      
+      .selected {
+        background-color: #007bff; /* כחול בהיר */
+        color: white;
+        font-weight: bold;
+      }
+      
