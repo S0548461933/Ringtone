@@ -1,5 +1,4 @@
-
-  <p class="calendar">לוח שנה בחירת תאריכים</p>
+<p class="calendar">לוח שנה בחירת תאריכים</p>
 <div class="calendar">
   <ngb-datepicker
     class="hebrew rtl"
@@ -9,7 +8,7 @@
     [firstDayOfWeek]="7"
     [dayTemplate]="dt"
     [dayTemplateData]="dayTemplateData"
-   > </ngb-datepicker>
+  > </ngb-datepicker>
 
   <ng-template
     #dt
@@ -21,7 +20,8 @@
     <div
       class="hebrew-day"
       [class.outside]="date.month !== currentMonth"
-      [class.selected]="selected"
+      [class.selected]="isSelected(date)"
+      (click)="selectDate(date)" 
     >
       <div class="gregorian-num">
         {{ data.gregorian.day + '/' + data.gregorian.month }}
@@ -32,6 +32,8 @@
 
   <hr />
 </div >
+
+<!-- אפשרויות נוספות -->
 <div class="calendar">
   <button class="btn btn-sm btn-outline-primary me-2  " (click)="model = calendar.getToday()">
     Select Today
@@ -40,8 +42,8 @@
     To current month
   </button>
 </div>
-  <hr />
+<hr />
 
-<pre class="calendar">Model: {{ model | json }}</pre>
+<pre class="calendar">Model: {{ modelList | json }}</pre> <!-- הצגת התאריכים שנבחרו -->
 
 

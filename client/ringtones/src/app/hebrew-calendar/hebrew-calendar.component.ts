@@ -20,13 +20,29 @@ export class HebrewCalendarComponent {
   i18n = inject(NgbDatepickerI18n);
 	calendar = inject(NgbCalendar);
 
-	model: NgbDateStruct | undefined ;
-constructor(){this.dayTemplateData = this.dayTemplateData.bind(this);
-}
-dayTemplateData(date: NgbDate) {
-  return {
-    gregorian: (this.calendar as NgbCalendarHebrew).toGregorian(date),
-  };
-}
+  model: NgbDateStruct | undefined ;
+  modelList: NgbDateStruct[] = [];
+  constructor(){this.dayTemplateData = this.dayTemplateData.bind(this);
+  }
+  dayTemplateData(date: NgbDate) {
+    return {
+		gregorian: (this.calendar as NgbCalendarHebrew).toGregorian(date),
+    };
+  }
 
+  isSelected(date: NgbDate): boolean {
+    return this.modelList.some(d => d.year === date.year && d.month === date.month && d.day === date.day);
+  }
+
+  selectDate(date: NgbDate) {
+    const dateIndex = this.modelList.findIndex(d => d.year === date.year && d.month === date.month && d.day === date.day);
+
+    if (dateIndex >= 0) {
+      this.modelList.splice(dateIndex, 1);
+    } else {
+      this.modelList.push({ year: date.year, month: date.month, day: date.day });
+    }
+
+    console.log(this.modelList);
+  }
 }
