@@ -22,8 +22,16 @@ export class HebrewCalendarComponent {
 
   model: NgbDateStruct | undefined ;
   modelList: NgbDateStruct[] = [];
-  constructor(){this.dayTemplateData = this.dayTemplateData.bind(this);
+
+  visible: boolean = false;
+
+    constructor(){this.dayTemplateData = this.dayTemplateData.bind(this);
   }
+
+  isDisabled = (date: NgbDate): boolean => {
+    return this.calendar.getWeekday(date) ===6 ; // יום 7 בלוח עברי = שבת
+  }
+
   dayTemplateData(date: NgbDate) {
     return {
 		gregorian: (this.calendar as NgbCalendarHebrew).toGregorian(date),
@@ -45,4 +53,7 @@ export class HebrewCalendarComponent {
 
     console.log(this.modelList);
   }
+  showDialog() {
+    this.visible = true;
+} 
 }

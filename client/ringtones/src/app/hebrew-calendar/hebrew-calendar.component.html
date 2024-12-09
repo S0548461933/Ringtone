@@ -8,6 +8,7 @@
     [firstDayOfWeek]="7"
     [dayTemplate]="dt"
     [dayTemplateData]="dayTemplateData"
+    [markDisabled]="isDisabled"
   > </ngb-datepicker>
 
   <ng-template
@@ -40,6 +41,9 @@
   </button>
   <button class="btn btn-sm btn-outline-primary me-2  " (click)="dp.navigateTo()">
     To current month
+  </button >
+  <button class="btn btn-sm btn-outline-primary me-2  "(click)="showDialog()">
+    Select dates
   </button>
 </div>
 <hr />
