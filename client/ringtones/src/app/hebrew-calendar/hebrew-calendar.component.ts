@@ -10,6 +10,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { JewishCalendarService } from '../jewish-calendar.service';
 
 @Component({
   selector: 'app-hebrew-calendar',
@@ -25,7 +26,7 @@ export class HebrewCalendarComponent {
 
   visible: boolean = false;
 
-    constructor(){this.dayTemplateData = this.dayTemplateData.bind(this);
+    constructor(JewishCalendarS:JewishCalendarService){this.dayTemplateData = this.dayTemplateData.bind(this);
   }
 
   isDisabled = (date: NgbDate): boolean => {
