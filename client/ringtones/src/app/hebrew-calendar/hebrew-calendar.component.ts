@@ -20,11 +20,10 @@ import { JewishCalendarService } from '../jewish-calendar.service';
 export class HebrewCalendarComponent {
   i18n = inject(NgbDatepickerI18n);
 	calendar = inject(NgbCalendar);
-
+  isValid :boolean=false;
   model: NgbDateStruct | undefined ;
   modelList: NgbDateStruct[] = [];
-
-  visible: boolean = false;
+  visible:boolean=false;
 
     constructor(JewishCalendarS:JewishCalendarService){this.dayTemplateData = this.dayTemplateData.bind(this);
   }
@@ -44,6 +43,7 @@ export class HebrewCalendarComponent {
   }
 
   selectDate(date: NgbDate) {
+    debugger
     const dateIndex = this.modelList.findIndex(d => d.year === date.year && d.month === date.month && d.day === date.day);
 
     if (dateIndex >= 0) {
@@ -51,9 +51,15 @@ export class HebrewCalendarComponent {
     } else {
       this.modelList.push({ year: date.year, month: date.month, day: date.day });
     }
-
+    if(this.modelList.length==0)
+      this.isValid=false;
+        else
+      this.isValid=true;
     console.log(this.modelList);
+   
   }
+
+
   showDialog() {
     this.visible = true;
 } 

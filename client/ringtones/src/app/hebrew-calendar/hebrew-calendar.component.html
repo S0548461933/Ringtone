@@ -42,12 +42,11 @@
   <button class="btn btn-sm btn-outline-primary me-2  " (click)="dp.navigateTo()">
     To current month
   </button >
-  <button class="btn btn-sm btn-outline-primary me-2  "(click)="showDialog()">
+  <button class="btn btn-sm btn-outline-primary me-2  "(click)="showDialog()"[disabled]="!isValid">
     Select dates
   </button>
 </div>
 <hr />
 
 <pre class="calendar">Model: {{ modelList | json }}</pre> <!-- הצגת התאריכים שנבחרו -->
-
 

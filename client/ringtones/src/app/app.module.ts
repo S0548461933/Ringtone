@@ -24,7 +24,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    
+   
   ],
   providers:   [
 		{ provide: NgbCalendar, useClass: NgbCalendarHebrew },
