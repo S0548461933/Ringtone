@@ -24,9 +24,22 @@ export class HebrewCalendarComponent {
   model: NgbDateStruct | undefined ;
   modelList: NgbDateStruct[] = [];
   visible:boolean=false;
+  selectedTime: Date = new Date();
+  hours: number = 0;
+  minutes: number = 0;
+  selectedTimes: string[] = [];
 
     constructor(JewishCalendarS:JewishCalendarService){this.dayTemplateData = this.dayTemplateData.bind(this);
   }
+ 
+  
+  selectedRingtone: number | null = null;
+  
+  playRingtone(ringtone: any) {
+    const audio = new Audio(ringtone.url);
+    audio.play();
+  }
+  
 
   isDisabled = (date: NgbDate): boolean => {
     return this.calendar.getWeekday(date) ===6 ; // יום 7 בלוח עברי = שבת
@@ -59,8 +72,31 @@ export class HebrewCalendarComponent {
    
   }
 
+  saveRingtone() {
+    if (this.selectedRingtone) {
+      // Save the selected ringtone logic here
+      console.log('Selected ringtone:', this.selectedRingtone);
+    }
+    this.visible = false;
+  }
 
   showDialog() {
     this.visible = true;
 } 
+
+addTime() {
+  const timeString = `${this.hours.toString().padStart(2, '0')}:${this.minutes.toString().padStart(2, '0')}`;
+  if (!this.selectedTimes.includes(timeString)) {
+      this.selectedTimes.push(timeString);
+  }
 }
+
+removeTime(time: string) {
+  const index = this.selectedTimes.indexOf(time);
+  if (index > -1) {
+      this.selectedTimes.splice(index, 1);
+  }
+}
+
+}
+

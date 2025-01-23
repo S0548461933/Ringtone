@@ -1,3 +1,119 @@
+/* Dialog Container */
+:host ::ng-deep .p-dialog {
+    width: 450px;
+    direction: rtl;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: white;
+}
+
+:host ::ng-deep .p-dialog-mask {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Dialog Header */
+:host ::ng-deep .p-dialog-header {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px 15px 0 0;
+    font-size: 1.4rem;
+}
+
+/* Dialog Content */
+.ringtone-content {
+    padding: 2rem;
+    background: #ffffff;
+}
+
+.ringtone-content h3 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Ringtone Items */
+.ringtone-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.ringtone-item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.ringtone-item:hover {
+    background: #e9ecef;
+    border-color: #4a90e2;
+    transform: translateY(-2px);
+}
+
+.ringtone-item span {
+    margin: 0 1rem;
+    flex: 1;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Radio Button */
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+    background: #4a90e2;
+    border-color: #4a90e2;
+}
+
+/* Play Button */
+:host ::ng-deep .p-button.p-button-icon-only {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: #4a90e2;
+}
+
+/* Footer Buttons */
+:host ::ng-deep .p-dialog-footer {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+}
+
+:host ::ng-deep .p-button {
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+:host ::ng-deep .p-button.p-button-secondary {
+    background: #e9ecef;
+    color: #495057;
+    border: none;
+}
+
+/* Scrollbar Styling */
+.ringtone-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ringtone-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.ringtone-list::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 4px;
+}
+
 .hebrew-day {
     text-align: right;
     padding: 0.25rem 0.65rem 0.25rem 0.25rem;
@@ -22,11 +138,14 @@
     direction: ltr;
 }
 
-.calendar{
+.calendar {
     display: flex;
     justify-content: center;
-    }
-
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    gap: 10px;
+}
 
     .custom-day {
         text-align: center;
@@ -45,4 +164,108 @@
         color: white;
         font-weight: bold;
       }
-      
+      .calendar1 {
+        display: flex;
+        justify-content: center; /* ממקם את הפתורים במרכז */
+        gap: 10px; /* מרווח בין הפתורים */
+        flex-wrap: nowrap; /* מוודא שאין שברים בשורות */
+    }
+    
+    .p-button {
+        font-size: 0.4rem; /* גודל פונט קטן יותר */
+        padding: 0.4rem 0.10rem; /* גודל פנימי קטן יותר */
+    }
+    .selected-dates-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* ממקם את התוכן במרכז */
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .selected-dates-preview h4 {
+        margin-bottom: 1rem; /* מרווח מתחת לכותרת */
+    }
+    
+    .date-preview-item {
+        margin: 0.5rem 0; /* מרווח בין כל פריט */
+        font-size: 1rem; /* גודל פונט */
+    }
+    .dialog-container {
+        display: flex;
+        justify-content: space-between; /* פיצול לטורים */
+        gap: 2rem;
+    }
+    
+    .dates-column, .time-column {
+        flex: 1; /* כל טור תופס חצי רוחב */
+    }
+    
+    .dates-column h3, .time-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .selected-dates {
+        margin-bottom: 1rem;
+    }
+    
+    .date-item {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    }
+    
+    .time-selector-tabs {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .selected-times {
+        margin-top: 1rem;
+    }
+    
+    .selected-times h4 {
+        font-size: 1rem;
+    }
+    
+    .selected-times .time-item {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .selected-times .pi-times {
+        margin-left: 0.5rem;
+        cursor: pointer;
+    }
+    .manual-time-input {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: nowrap; /* אין שבירת שורה */
+        width: auto; /* רוחב מותאם לגודל התוכן */
+        max-width: 300px; /* הגדירו רוחב מקסימלי קטן יותר */
+    }
+    
+    .manual-time-input p-inputNumber {
+        height: 30px !important; /* גובה קטן יותר */
+        padding: 0.2rem !important;
+        font-size: 0.8rem !important; /* טקסט קטן יותר */
+        flex-shrink: 1; /* הכפתור והשדות יכולים להתכווץ אם צריך */
+        max-width: 50px; /* רוחב מקסימלי קטן יותר */
+    }
+    
+    .manual-time-input span {
+        font-size: 1rem;
+        margin: 0 0.3rem;
+    }
+    
+    .manual-time-input button {
+        height: 30px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+        white-space: nowrap;
+        flex-shrink: 1; /* מאפשר לכפתור להתכווץ אם יש צורך */
+        max-width: 60px; /* רוחב קטן יותר לכפתור */
+    }
+    

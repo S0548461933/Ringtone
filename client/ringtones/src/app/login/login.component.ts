@@ -25,7 +25,7 @@ export class LoginComponent {
   }
 
   get password() {
-    debugger
+    
     return this.loginForm.get('password')!;
   }
  onSubmit() {
