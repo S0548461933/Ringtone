@@ -1,30 +1,12 @@
 <p class="calendar">לוח שנה בחירת תאריכים</p>
 <div class="calendar">
 
-  <ngb-datepicker
-  class="hebrew rtl"
-  #dp
-  [(ngModel)]="model"
-  [displayMonths]="1"
-  [firstDayOfWeek]="7"
-  [dayTemplate]="dt"
-  [dayTemplateData]="dayTemplateData"
-  [markDisabled]="isDisabled"
-></ngb-datepicker>
+  <ngb-datepicker class="hebrew rtl" #dp [(ngModel)]="model" [displayMonths]="1" [firstDayOfWeek]="7" [dayTemplate]="dt"
+    [dayTemplateData]="dayTemplateData" [markDisabled]="isDisabled"></ngb-datepicker>
 
-  <ng-template
-    #dt
-    let-date
-    let-data="data"
-    let-selected="selected"
-    let-currentMonth="currentMonth"
-  >
-    <div
-      class="hebrew-day"
-      [class.outside]="date.month !== currentMonth"
-      [class.selected]="isSelected(date)"
-      (click)="selectDate(date)" 
-    >
+  <ng-template #dt let-date let-data="data" let-selected="selected" let-currentMonth="currentMonth">
+    <div class="hebrew-day" [class.outside]="date.month !== currentMonth" [class.selected]="isSelected(date)"
+      (click)="selectDate(date)">
       <div class="gregorian-num">
         {{ data.gregorian.day + '/' + data.gregorian.month }}
       </div>
@@ -33,7 +15,7 @@
   </ng-template>
 
   <hr />
-</div >
+</div>
 
 <!-- אפשרויות נוספות -->
 <div class="calendar1">
@@ -67,41 +49,29 @@
           </div>
       </div>
 
-      <!-- Left Column - Time Selection -->
-      <div class="time-column">
-        <h3>בחירת זמן לצלצול</h3>
-        <div class="time-selector-tabs">
-          <div class="manual-time-input">
-            <div class="time-fields">
-              <p-inputNumber 
-                [(ngModel)]="hours" 
-                [min]="0" 
-                [max]="23" 
-                placeholder="שעה">
-              </p-inputNumber>
-              <span>:</span>
-              <p-inputNumber 
-                [(ngModel)]="minutes" 
-                [min]="0" 
-                [max]="59" 
-                placeholder="דקות">
-              </p-inputNumber>
-            </div>
-            <button 
-              pButton 
-              icon="pi pi-plus" 
-              label="הוסף" 
-              (click)="addTime()">
-            </button>
+    <!-- Left Column - Time Selection -->
+    <div class="time-column">
+      <h3>בחירת זמן לצלצול</h3>
+      <div class="time-selector-tabs">
+        <div class="manual-time-input">
+          <div class="time-fields">
+            <p-inputNumber [(ngModel)]="minutes" [min]="0" [max]="59" placeholder="דקות">
+            </p-inputNumber>
+            <span>:</span>
+            <p-inputNumber [(ngModel)]="hours" [min]="0" [max]="23" placeholder="שעה">
+            </p-inputNumber>
           </div>
-          <div class="selected-times">
-            <h4>שעות שנבחרו</h4>
-            <div *ngFor="let time of selectedTimes" class="time-item">
-              {{time}}
-              <i class="pi pi-times" (click)="removeTime(time)"></i>
-            </div>
+          <button pButton icon="pi pi-plus" label="הוסף" (click)="addTime()">
+          </button>
+        </div>
+        <div class="selected-times">
+          <h4>שעות שנבחרו</h4>
+          <div *ngFor="let time of selectedTimes" class="time-item">
+            {{time}}
+            <i class="pi pi-times" (click)="removeTime(time)"></i>
           </div>
         </div>
-      </div>      
+      </div>
+    </div>
   </div>
 </p-dialog>
