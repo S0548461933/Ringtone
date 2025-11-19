@@ -5,7 +5,22 @@
       "ProjectGuid": "3192f34e-d7f6-4066-a058-05da861e5b1a",
       "DisplayName": "ringtones",
       "ColorIndex": 0
+    },
+    "21484c7e-7cba-4fdc-9f0c-83ddbbd9371e": {
+      "ProjectGuid": "21484c7e-7cba-4fdc-9f0c-83ddbbd9371e",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "160fef6e-7e77-4163-ab31-2c9d54bc06fe": {
+      "ProjectGuid": "160fef6e-7e77-4163-ab31-2c9d54bc06fe",
+      "DisplayName": "bell",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
