@@ -1,73 +1,94 @@
-<p class="calendar">לוח שנה בחירת תאריכים</p>
-<div class="calendar">
-
-  <ngb-datepicker class="hebrew rtl" #dp [(ngModel)]="model" [displayMonths]="1" [firstDayOfWeek]="7" [dayTemplate]="dt"
-    [dayTemplateData]="dayTemplateData" [markDisabled]="isDisabled"></ngb-datepicker>
-
-  <ng-template #dt let-date let-data="data" let-selected="selected" let-currentMonth="currentMonth">
-    <div class="hebrew-day" [class.outside]="date.month !== currentMonth" [class.selected]="isSelected(date)"
-      (click)="selectDate(date)">
-      <div class="gregorian-num">
-        {{ data.gregorian.day + '/' + data.gregorian.month }}
-      </div>
-      <div class="hebrew-num">{{ i18n.getDayNumerals(date) }}</div>
+﻿<div class="calendar-wrapper">
+  <div class="calendar-header">
+    <button type="button" class="nav-btn" (click)="navigateMonth(-1)">
+      <i class="pi pi-angle-right"></i>
+    </button>
+    <div class="header-text">
+      <div class="month-title">{{ currentMonthLabel }}</div>
+      <div class="calendar-subtitle">{{ headerSubtitle }}</div>
     </div>
-  </ng-template>
+    <button type="button" class="nav-btn" (click)="navigateMonth(1)">
+      <i class="pi pi-angle-left"></i>
+    </button>
+  </div>
 
-  <hr />
-</div>
+  <div class="calendar-table">
+    <div class="calendar-row calendar-header-row">
+      <div class="calendar-cell header" *ngFor="let day of weekdayLabels">{{ day }}</div>
+    </div>
+    <div class="calendar-row" *ngFor="let week of weeks">
+      <div
+        class="calendar-cell"
+        *ngFor="let day of week"
+        [class.outside]="day.outside"
+        [class.disabled]="day.disabled"
+        [class.selected]="isSelectedDay(day)"
+        (click)="selectDay(day)"
+      >
+        <div class="hebrew-num">{{ day.hebrew }}</div>
+        <div class="gregorian-num">{{ day.gregorian }}</div>
+        <div class="day-event" *ngIf="day.event">
+          {{ day.event }}
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- אפשרויות נוספות -->
-<div class="calendar1">
-  <p-button class="btn btn-sm btn-outline-primary me-2  " (click)="model = calendar.getToday()">
-    Select Today
-  </p-button>
-  <p-button class="btn btn-sm btn-outline-primary me-2  " (click)="dp.navigateTo()">
-    To current month
-  </p-button >
-  <p-button class="btn btn-sm btn-outline-primary me-2  "(click)="showDialog()"[disabled]="!isValid">
-    Select dates
-  </p-button>
+  <div class="calendar-legend">
+    <span class="legend-item legend-selected">תאריך שנבחר</span>
+    <span class="legend-item legend-disabled">חג / שבת</span>
+    <span class="legend-item legend-available">יום פנוי</span>
+  </div>
+
+  <div class="calendar-actions">
+    <p-button class="btn btn-sm btn-outline-primary" (click)="resetToCurrentMonth()">
+      לחודש הנוכחי
+    </p-button>
+    <p-button class="btn btn-sm btn-outline-primary" (click)="showDialog()" [disabled]="!isValid">
+      קבעי זמנים
+    </p-button>
+  </div>
 </div>
-<hr />
 
 <div class="selected-dates-preview">
   <h4>תאריכים שנבחרו:</h4>
   <div *ngFor="let date of modelList" class="date-preview-item">
-      {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+    {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+    <div class="holiday-tag" *ngIf="getHolidayLabel(date) as holidayName">
+      {{ holidayName }}
+    </div>
   </div>
 </div>
-<p-dialog header="הגדרת תזכורות" [(visible)]="visible" [modal]="true" [style]="{width: '800px'}">
-  <div class="dialog-container">
-      <!-- Right Column - Dates -->
-      <div class="dates-column">
-          <h3>תאריכים שנבחרו</h3>
-          <div class="selected-dates">
-              <div *ngFor="let date of modelList" class="date-item">
-                  {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
-              </div>
-          </div>
-      </div>
 
-    <!-- Left Column - Time Selection -->
+<p-dialog header="הגדרת הצלצולים" [(visible)]="visible" [modal]="true" [style]="{ width: '800px' }">
+  <div class="dialog-container">
+    <div class="dates-column">
+      <h3>תאריכים שנבחרו</h3>
+      <div class="selected-dates">
+        <div *ngFor="let date of modelList" class="date-item">
+          {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+          <div class="holiday-tag" *ngIf="getHolidayLabel(date) as holidayName">
+            {{ holidayName }}
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="time-column">
-      <h3>בחירת זמן לצלצול</h3>
+      <h3>קבעי שעות להשמעת הצלצולים</h3>
       <div class="time-selector-tabs">
         <div class="manual-time-input">
           <div class="time-fields">
-            <p-inputNumber [(ngModel)]="minutes" [min]="0" [max]="59" placeholder="דקות">
-            </p-inputNumber>
+            <p-inputNumber [(ngModel)]="minutes" [min]="0" [max]="59" placeholder="דקות"></p-inputNumber>
             <span>:</span>
-            <p-inputNumber [(ngModel)]="hours" [min]="0" [max]="23" placeholder="שעה">
-            </p-inputNumber>
+            <p-inputNumber [(ngModel)]="hours" [min]="0" [max]="23" placeholder="שעות"></p-inputNumber>
           </div>
-          <button pButton icon="pi pi-plus" label="הוסף" (click)="addTime()">
-          </button>
+          <button pButton icon="pi pi-plus" label="הוסיפי שעה" (click)="addTime()"></button>
         </div>
         <div class="selected-times">
           <h4>שעות שנבחרו</h4>
           <div *ngFor="let time of selectedTimes" class="time-item">
-            {{time}}
+            {{ time }}
             <i class="pi pi-times" (click)="removeTime(time)"></i>
           </div>
         </div>

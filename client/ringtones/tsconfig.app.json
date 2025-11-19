@@ -11,6 +11,8 @@
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/app/**/*.ts",
+    "src/polyfills.ts",
+    "src/polyfills.ngtypecheck.ts"
   ]
 }
