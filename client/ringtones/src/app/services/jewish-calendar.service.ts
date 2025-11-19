@@ -19,13 +19,20 @@ export class JewishCalendarService {
   constructor(private http: HttpClient) { }
 
   // כתובת ה־API של הלוח
-  UrlJewishCalendar: string =
-    'https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&M=on&s=on';
+getJewishCalendar(): Observable<any> {
+  const currentYear = new Date().getFullYear();
+  const startYear = currentYear - 50;
+  const endYear = currentYear + 50;
 
-  // דוגמה לפונקציה שתביא נתונים מה-URL הזה (אם תרצי להשתמש בה)
-  getJewishCalendar(): Observable<any> {
-    return this.http.get<any>(this.UrlJewishCalendar);
-  }
+  const start = `${startYear}-01-01`;
+  const end = `${endYear}-12-31`;
+  const url =
+    `https://www.hebcal.com/hebcal?v=1&cfg=json&start=${start}&end=${end}` +
+    `&maj=on&min=on&mod=on&nx=on&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&M=on&s=on`;
+
+  return this.http.get<any>(url);
+}
+
 
   // 🔹 זו הפונקציה שהקומפוננטה שלך מחפשת
   private baseUrlRingtones = '/api/ringtones'; // תעדכני בהתאם לשרת שלך

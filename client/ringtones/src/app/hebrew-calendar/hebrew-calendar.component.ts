@@ -37,10 +37,20 @@ export class HebrewCalendarComponent implements OnInit {
 
   private readonly displayHolidayCategories = new Set(['holiday', 'fast', 'modern', 'roshchodesh']);
   private readonly blockingHolidayCategories = new Set(['holiday', 'modern']);
-  private readonly ignoredBlockingTitles = [,'תשעה באב','יום השואה','תענית בכורות','יום העליה','שבועות ב׳','ט״ו בשבט','עשרה בטבת',' תענית אסתר, ערב פורים ','ל״ג בעומר','יום הזכרון','פסח שני','ערב שבועות','יום ירושלים','יום העצמאות','חג הסיגד','צום י״ז בתמוז', 'סיגד', 'צום גדליה','ראש השנה למעשר בהמה','חנוכה: א׳ נר'];
+  private readonly ignoredBlockingTitles = [,'תשעה באב','יום השואה','תענית בכורות','יום העליה','שבועות ב׳','ט״ו בשבט',
+    'עשרה בטבת','תענית אסתר','ערב פורים','ל״ג בעומר','יום הזכרון','פסח שני','ערב שבועות','יום ירושלים','יום העצמאות',
+    'חג הסיגד','צום י״ז בתמוז', 'סיגד', 'צום גדליה','ראש השנה למעשר בהמה','חנוכה: א׳ נר','חנוכה: ב׳ נרות','חנוכה: ג׳ נרות',
+    'חנוכה: ד׳ נרות','חנוכה: ה׳ נרות','חנוכה: ו׳ נרות' ,'חנוכה: ז׳ נרות','חנוכה: ח׳ נרות','שושן פורים קטן','פורים קטן'];
+  private readonly hiddenHolidayTitles = ['חג הסיגד', 'סיגד','חג הבנות'];
   private readonly ignoredBlockingTitlesNormalized: Set<string>;
+  private readonly hiddenHolidayTitlesNormalized: Set<string>;
   private readonly blockedHolidayDates = new Set<string>();
   private holidayLabels: Record<string, string[]> = {};
+
+
+
+
+  
 
   readonly weekdayLabels = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
   headerSubtitle = 'בחר תאריכים בלוח המשולב כדי לקבוע זמני תזכורות והודעות אוטומטיות';
@@ -48,6 +58,9 @@ export class HebrewCalendarComponent implements OnInit {
   constructor(private jewishCalendarService: JewishCalendarService) {
     this.ignoredBlockingTitlesNormalized = new Set(
       this.ignoredBlockingTitles.map((title) => this.normalizeTitle(title))
+    );
+    this.hiddenHolidayTitlesNormalized = new Set(
+      this.hiddenHolidayTitles.map((title) => this.normalizeTitle(title))
     );
   }
 
@@ -68,6 +81,10 @@ export class HebrewCalendarComponent implements OnInit {
             return;
           }
 
+          const normalizedTitle = this.normalizeTitle(item?.hebrew ?? item?.title ?? '');
+          if (normalizedTitle && this.hiddenHolidayTitlesNormalized.has(normalizedTitle)) {
+            return;
+          }
           const parsedDate = this.parseIsoDate(item?.date);
           if (parsedDate) {
             const key = this.dateKey(parsedDate);
