@@ -6,7 +6,15 @@ import {
   NgbDatepickerI18n,
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
-import { JewishCalendarService, RingtoneScheduleDto } from '../services/jewish-calendar.service';
+import { JewishCalendarService, ScheduleEntry } from '../services/jewish-calendar.service';
+import { switchMap } from 'rxjs';
+
+interface RingtoneOption {
+  id: number;
+  label: string;
+  fileName: string;
+}
+
 
 interface CalendarCell {
   hebrew: string;
@@ -33,7 +41,40 @@ export class HebrewCalendarComponent implements OnInit {
   hours = 0;
   minutes = 0;
   selectedTimes: string[] = [];
-  selectedRingtone: number | null = null;
+   defaultRingtones: { id: number; label: string; file: string }[] = [
+    { id: 1, label: 'Backroad',            file: 'Backroad.mp3' },
+    { id: 2, label: 'Big Easy',            file: 'Big_Easy.mp3' },
+    { id: 3, label: 'Bollywood',           file: 'Bollywood.mp3' },
+    { id: 4, label: 'Calypso Steel',       file: 'Calypso_Steel.mp3' },
+    { id: 5, label: 'Champagne Edition',   file: 'Champagne_Edition.mp3' },
+    { id: 6, label: 'Crayon Rock',         file: 'CrayonRock.mp3' },
+    { id: 7, label: 'Ether Shake',         file: 'EtherShake.mp3' },
+    { id: 8, label: 'Paradise Island',     file: 'Paradise_Island.mp3' },
+    { id: 9, label: 'Pyxis',               file: 'Pyxis.mp3' },
+    { id: 10, label: 'Romancing The Tone', file: 'RomancingTheTone.mp3' }
+  ];
+  private readonly ringtoneFileMap: Record<number, string> = {
+    1: 'Backroad.mp3',
+    2: 'Big_Easy.mp3',
+    3: 'Bollywood.mp3',
+    4: 'Calypso_Steel.mp3',
+    5: 'Champagne_Edition.mp3',
+    6: 'CrayonRock.mp3',
+    7: 'EtherShake.mp3',
+    8: 'Paradise_Island.mp3',
+    9: 'Pyxis.mp3',
+    10: 'RomancingTheTone.mp3'
+  };
+  selectedRingtone: number | null = this.defaultRingtones[0]?.id ?? null;
+
+  ringtoneSource: 'default' | 'upload' = 'default';
+  selectedRingtoneFile: File | null = null;
+
+  uploadedRingtoneName = '';
+  selectedTime: Date | null = null;
+  rangeFromText = '';
+  rangeToText = '';
+
 
   private readonly displayHolidayCategories = new Set(['holiday', 'fast', 'modern', 'roshchodesh']);
   private readonly blockingHolidayCategories = new Set(['holiday', 'modern']);
@@ -46,11 +87,8 @@ export class HebrewCalendarComponent implements OnInit {
   private readonly hiddenHolidayTitlesNormalized: Set<string>;
   private readonly blockedHolidayDates = new Set<string>();
   private holidayLabels: Record<string, string[]> = {};
-
-
-
-
-  
+  private monthNameLookup: Map<string, number> = new Map();
+  private rangeAnchor: NgbDate | null = null;
 
   readonly weekdayLabels = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
   headerSubtitle = 'בחר תאריכים בלוח המשולב כדי לקבוע זמני תזכורות והודעות אוטומטיות';
@@ -65,6 +103,7 @@ export class HebrewCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.buildMonthLookup();
     this.loadJewishHolidays();
     this.buildMonthGrid();
   }
@@ -184,6 +223,25 @@ export class HebrewCalendarComponent implements OnInit {
   private normalizeTitle(value: string | undefined): string {
     return (value ?? '').replace(/\s+/g, '').replace(/["'״׳]/g, '').toLowerCase();
   }
+  private normalizeHebrewName(value: string | undefined): string {
+    return (value ?? '').replace(/[\"'״׳]/g, '').replace(/\s+/g, '').toLowerCase();
+  }
+
+  private buildMonthLookup(): void {
+    this.monthNameLookup.clear();
+    for (let m = 1; m <= 13; m++) {
+      const full = this.normalizeHebrewName(this.i18n.getMonthFullName(m));
+      if (full) {
+        this.monthNameLookup.set(full, m);
+      }
+      const shortName = (this.i18n as any)?.getMonthShortName?.(m);
+      const short = this.normalizeHebrewName(shortName);
+      if (short) {
+        this.monthNameLookup.set(short, m);
+      }
+    }
+  }
+
 
   private shouldBlockHoliday(item: any, category: string): boolean {
     if (!this.blockingHolidayCategories.has(category)) {
@@ -242,6 +300,21 @@ export class HebrewCalendarComponent implements OnInit {
     this.buildMonthGrid();
   }
 
+  private compareDates(a: NgbDateStruct | NgbDate, b: NgbDateStruct | NgbDate): number {
+    const dateA = a instanceof NgbDate ? a : NgbDate.from(a);
+    const dateB = b instanceof NgbDate ? b : NgbDate.from(b);
+    if (!dateA || !dateB) {
+      return 0;
+    }
+    if (dateA.year !== dateB.year) {
+      return dateA.year - dateB.year;
+    }
+    if (dateA.month !== dateB.month) {
+      return dateA.month - dateB.month;
+    }
+    return dateA.day - dateB.day;
+  }
+
   isSelected(date: NgbDate): boolean {
     return this.modelList.some((d) => d.year === date.year && d.month === date.month && d.day === date.day);
   }
@@ -250,12 +323,138 @@ export class HebrewCalendarComponent implements OnInit {
     return this.isSelected(cell.date);
   }
 
-  selectDay(cell: CalendarCell): void {
+  selectDay(cell: CalendarCell, event?: MouseEvent): void {
     if (cell.disabled || cell.outside) {
       return;
     }
-    this.selectDate(cell.date);
+    if (event?.shiftKey && this.rangeAnchor) {
+      this.selectDateRange(this.rangeAnchor, cell.date);
+    } else {
+      this.selectDate(cell.date);
+    }
+    this.rangeAnchor = cell.date;
     this.buildMonthGrid();
+  }
+
+  private selectDateRange(start: NgbDate, end: NgbDate): void {
+    let startDate = NgbDate.from(start);
+    let endDate = NgbDate.from(end);
+    if (!startDate || !endDate) {
+      return;
+    }
+    if (this.compareDates(startDate, endDate) > 0) {
+      [startDate, endDate] = [endDate, startDate];
+    }
+
+    let cursor: NgbDate | null = startDate;
+    while (cursor && this.compareDates(cursor, endDate) <= 0) {
+      this.addDateToSelection(cursor);
+      cursor = this.calendar.getNext(cursor, 'd');
+    }
+  }
+
+  applyTextRange(): void {
+    const start = this.parseHebrewDateText(this.rangeFromText);
+    const end = this.parseHebrewDateText(this.rangeToText);
+    if (!start || !end) {
+      return;
+    }
+    this.selectDateRange(start, end);
+    this.rangeAnchor = end;
+    this.buildMonthGrid();
+  }
+
+  private parseHebrewDateText(value: string | undefined): NgbDate | null {
+    const trimmed = (value ?? '').trim();
+    if (!trimmed) {
+      return null;
+    }
+
+    if (!this.monthNameLookup.size) {
+      this.buildMonthLookup();
+    }
+
+    const parts = trimmed.split(/\s+/);
+    if (parts.length < 2) {
+      return null;
+    }
+    const dayPart = parts[0];
+    const monthPart = parts.slice(1).join(' ');
+
+    const day = this.hebrewDayToNumber(dayPart);
+    if (!day) {
+      return null;
+    }
+
+    const monthKey = this.normalizeHebrewName(monthPart);
+    const month = this.monthNameLookup.get(monthKey);
+    if (!month) {
+      return null;
+    }
+
+    const reference = this.model ?? this.calendar.getToday();
+    const candidate = new NgbDate(reference.year, month, day);
+    if (this.isDisabled(candidate)) {
+      return null;
+    }
+    return candidate;
+  }
+
+  private hebrewDayToNumber(value: string | undefined): number | null {
+    const clean = (value ?? '').replace(/[\"'״׳]/g, '').replace(/[^א-ת0-9]/gi, '').toLowerCase();
+    if (!clean) {
+      return null;
+    }
+
+    const dayMap: Record<string, number> = {
+      'א': 1,
+      'ב': 2,
+      'ג': 3,
+      'ד': 4,
+      'ה': 5,
+      'ו': 6,
+      'ז': 7,
+      'ח': 8,
+      'ט': 9,
+      'י': 10,
+      'יא': 11,
+      'יב': 12,
+      'יג': 13,
+      'יד': 14,
+      'טו': 15,
+      'טז': 16,
+      'יז': 17,
+      'יח': 18,
+      'יט': 19,
+      'כ': 20,
+      'כא': 21,
+      'כב': 22,
+      'כג': 23,
+      'כד': 24,
+      'כה': 25,
+      'כו': 26,
+      'כז': 27,
+      'כח': 28,
+      'כט': 29,
+      'ל': 30,
+    };
+
+    if (/^\\d+$/.test(clean)) {
+      const num = Number(clean);
+      return num >= 1 && num <= 30 ? num : null;
+    }
+
+    return dayMap[clean] ?? null;
+  }
+
+  private addDateToSelection(date: NgbDate): void {
+    if (this.isDisabled(date)) {
+      return;
+    }
+    const exists = this.modelList.some((d) => d.year === date.year && d.month === date.month && d.day === date.day);
+    if (!exists) {
+      this.modelList.push({ year: date.year, month: date.month, day: date.day });
+    }
   }
 
   selectDate(date: NgbDate) {
@@ -271,16 +470,30 @@ export class HebrewCalendarComponent implements OnInit {
     }
   }
 
+  removeDate(date: NgbDateStruct): void {
+    this.modelList = this.modelList.filter(
+      (d) => !(d.year === date.year && d.month === date.month && d.day === date.day)
+    );
+    this.buildMonthGrid();
+  }
+
   showDialog() {
     this.visible = true;
   }
 
   addTime() {
-    const h = this.hours ?? 0;
-    const m = this.minutes ?? 0;
+    let h = this.hours ?? 0;
+    let m = this.minutes ?? 0;
+
+    if (this.selectedTime instanceof Date) {
+      h = this.selectedTime.getHours();
+      m = this.selectedTime.getMinutes();
+    }
+
     if (h < 0 || h > 23 || m < 0 || m > 59) {
       return;
     }
+
     const timeString = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
     if (!this.selectedTimes.includes(timeString)) {
       this.selectedTimes.push(timeString);
@@ -294,37 +507,104 @@ export class HebrewCalendarComponent implements OnInit {
     }
   }
 
+  setRingtoneSource(source: 'default' | 'upload'): void {
+    this.ringtoneSource = source;
+    if (source === 'default') {
+      this.selectedRingtoneFile = null;
+      this.uploadedRingtoneName = '';
+    }
+  }
+
+  onRingtoneFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    const file = input?.files?.[0];
+    if (file) {
+      this.selectedRingtoneFile = file;
+      this.uploadedRingtoneName = file.name;
+      this.ringtoneSource = 'upload';
+    } else {
+      this.selectedRingtoneFile = null;
+      this.uploadedRingtoneName = '';
+    }
+  }
+
   get isValid(): boolean {
     return this.modelList.length > 0;
   }
 
   get canSave(): boolean {
-    return this.modelList.length > 0 && this.selectedTimes.length > 0;
+    const hasRingtone =
+      this.ringtoneSource === 'default' ? this.selectedRingtone !== null : !!this.selectedRingtoneFile;
+    return this.modelList.length > 0 && this.selectedTimes.length > 0 && hasRingtone;
   }
+saveSchedules() {
+  if (!this.canSave) return;
 
-  saveSchedules() {
-    if (!this.canSave) {
+  // פונקציה שמכינה את ה־payload לפי שם קובץ הצלצול
+  const runSave = (ringtoneFile: string) => {
+ const hebrewCalendar = this.calendar as NgbCalendarHebrew;
+
+const payload = this.modelList.flatMap(date =>
+  this.selectedTimes.map(time => {
+
+    // ממירים את התאריך העברי לגרגוריאני
+    const hebrewDate = new NgbDate(date.year, date.month, date.day);
+    const greg = hebrewCalendar.toGregorian(hebrewDate);
+
+    const dateStr =
+      `${greg.year.toString().padStart(4, '0')}-` +
+      `${greg.month.toString().padStart(2, '0')}-` +
+      `${greg.day.toString().padStart(2, '0')}`;
+
+    return {
+      date: dateStr,
+      time,
+      ringtoneFile,
+    } as ScheduleEntry;
+  })
+);
+
+
+    return this.jewishCalendarService.saveRingtones(payload);
+  };
+
+  // אם מעלים קובץ חדש
+  if (this.ringtoneSource === 'upload' && this.selectedRingtoneFile) {
+    this.jewishCalendarService.uploadRingtone(this.selectedRingtoneFile).pipe(
+      switchMap(res => runSave(res.fileName)) // שם הקובץ מהשרת
+    )
+    .subscribe({
+      next: () => {
+        console.log('נשמר בהצלחה עם צלצול חדש');
+        this.visible = false;
+      },
+      error: (err: any) => {
+        console.error('שגיאה בשמירה', err);
+      }
+    });
+  } else {
+    // צלצול ברירת מחדל
+    const id = this.selectedRingtone;
+    if (!id || !this.ringtoneFileMap[id]) {
+      console.error('לא נבחר צלצול ברירת מחדל תקין');
       return;
     }
 
-    const payload: RingtoneScheduleDto[] = this.modelList.flatMap((date) =>
-      this.selectedTimes.map((time) => ({
-        year: date.year,
-        month: date.month,
-        day: date.day,
-        time,
-        ringtoneId: this.selectedRingtone,
-      }))
-    );
+    const fileName = this.ringtoneFileMap[id];
 
-    this.jewishCalendarService.saveRingtones(payload).subscribe({
+    runSave(fileName).subscribe({
       next: () => {
-        console.log('הלו"ז נשמר בהצלחה');
+        console.log('נשמר בהצלחה עם צלצול קיים');
         this.visible = false;
       },
-      error: (err) => console.error('שגיאה בשמירת ההגדרות', err),
+      error: (err: any) => {
+        console.error('שגיאה בשמירה', err);
+      }
     });
   }
+
+
+}
 
   playRingtone(ringtone: any) {
     const audio = new Audio(ringtone.url);
@@ -340,4 +620,7 @@ export class HebrewCalendarComponent implements OnInit {
     const gregorian = hebrewCalendar.toGregorian(ngbDate);
     return this.dateKey(gregorian);
   }
+
+
+
 }

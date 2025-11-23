@@ -416,20 +416,54 @@ button {
 
 .date-preview-item:last-child,
 .date-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .holiday-tag {
     font-size: 0.75rem;
     background: rgba(58, 87, 232, 0.12);
-    color: #2f3fb6;
-    border-radius: 999px;
-    padding: 0.15rem 0.6rem;
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
+  color: #2f3fb6;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.date-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 2cm;
+  direction: rtl;
+  white-space: nowrap;
+}
+
+.remove-date-btn {
+  min-width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #d64a6f, #f3903f);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.remove-date-btn:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
 }
 .calendar-wrapper {
   direction: rtl;
@@ -580,6 +614,23 @@ button {
   border-radius: 999px;
   padding: 0.15rem 0.6rem;
   width: fit-content;
+}
+
+.calendar-page {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.calendar-wrapper {
+  flex: 1 1 620px;
+}
+
+.side-panel {
+  flex: 0 0 260px;
+  position: sticky;
+  top: 12px;
 }
 
 .weekday-row {
@@ -734,3 +785,146 @@ button {
   font-size: 0.95rem;
   padding: 0.5rem 1.5rem;
 }
+
+/* Layout and sizing overrides to fit screen */
+.calendar-page {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.calendar-wrapper {
+  flex: 1 1 auto;
+  max-width: none;
+  width: auto;
+}
+
+.calendar-table {
+  width: 100%;
+}
+
+.calendar-row {
+  grid-template-columns: repeat(7, minmax(90px, 1fr));
+}
+
+.calendar-header-row .calendar-cell {
+  padding: 8px 0;
+}
+
+.calendar-cell {
+  min-height: 90px;
+  padding: 8px 6px;
+}
+
+.side-panel {
+  flex: 0 0 260px;
+  position: sticky;
+  top: 12px;
+  max-height: calc(100vh - 24px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep the side panel title visible while scrolling many dates */
+.selected-dates-preview.side-panel {
+  position: relative;
+}
+.selected-dates-preview.side-panel h4 {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  padding: 0.75rem 0;
+  margin-top: -0.75rem;
+  z-index: 2;
+}
+
+.selected-dates-scroll {
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  padding-right: 4px;
+}
+
+.pretty-time-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+:host ::ng-deep .pretty-time-picker .p-inputtext {
+  min-width: 140px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #cfd8e3;
+}
+
+:host ::ng-deep .pretty-time-picker .p-datepicker-trigger {
+  border-radius: 10px;
+}
+
+:host ::ng-deep .pretty-time-picker .p-button {
+  direction: rtl;
+  justify-content: flex-end;
+}
+
+:host ::ng-deep .pretty-time-picker .p-button .p-button-label {
+  text-align: right;
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+  direction: rtl;
+}
+
+.ringtone-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #e1e6f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.ringtone-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ringtone-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: rtl;
+}
+
+.ringtone-option input[type="radio"] {
+  accent-color: #d64a6f;
+}
+
+.ringtone-select {
+  min-width: 160px;
+  padding: 6px 10px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ringtone-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: rtl;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+

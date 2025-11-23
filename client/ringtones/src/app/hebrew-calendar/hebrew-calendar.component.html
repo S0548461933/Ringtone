@@ -1,61 +1,73 @@
-﻿<div class="calendar-wrapper">
-  <div class="calendar-header">
-    <button type="button" class="nav-btn" (click)="navigateMonth(-1)">
-      <i class="pi pi-angle-right"></i>
-    </button>
-    <div class="header-text">
-      <div class="month-title">{{ currentMonthLabel }}</div>
-      <div class="calendar-subtitle">{{ headerSubtitle }}</div>
+﻿<div class="calendar-page">
+  <div class="calendar-wrapper">
+    <div class="calendar-header">
+      <button type="button" class="nav-btn" (click)="navigateMonth(-1)">
+        <i class="pi pi-angle-right"></i>
+      </button>
+      <div class="header-text">
+        <div class="month-title">{{ currentMonthLabel }}</div>
+        <div class="calendar-subtitle">{{ headerSubtitle }}</div>
+      </div>
+      <button type="button" class="nav-btn" (click)="navigateMonth(1)">
+        <i class="pi pi-angle-left"></i>
+      </button>
     </div>
-    <button type="button" class="nav-btn" (click)="navigateMonth(1)">
-      <i class="pi pi-angle-left"></i>
-    </button>
-  </div>
 
-  <div class="calendar-table">
-    <div class="calendar-row calendar-header-row">
-      <div class="calendar-cell header" *ngFor="let day of weekdayLabels">{{ day }}</div>
-    </div>
-    <div class="calendar-row" *ngFor="let week of weeks">
-      <div
-        class="calendar-cell"
-        *ngFor="let day of week"
-        [class.outside]="day.outside"
-        [class.disabled]="day.disabled"
-        [class.selected]="isSelectedDay(day)"
-        (click)="selectDay(day)"
-      >
-        <div class="hebrew-num">{{ day.hebrew }}</div>
-        <div class="gregorian-num">{{ day.gregorian }}</div>
-        <div class="day-event" *ngIf="day.event">
-          {{ day.event }}
+    <div class="calendar-table">
+      <div class="calendar-row calendar-header-row">
+        <div class="calendar-cell header" *ngFor="let day of weekdayLabels">{{ day }}</div>
+      </div>
+      <div class="calendar-row" *ngFor="let week of weeks">
+        <div
+          class="calendar-cell"
+          *ngFor="let day of week"
+          [class.outside]="day.outside"
+          [class.disabled]="day.disabled"
+          [class.selected]="isSelectedDay(day)"
+          (click)="selectDay(day, $event)"
+        >
+          <div class="hebrew-num">{{ day.hebrew }}</div>
+          <div class="gregorian-num">{{ day.gregorian }}</div>
+          <div class="day-event" *ngIf="day.event">
+            {{ day.event }}
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="calendar-legend">
+      <span class="legend-item legend-selected">תאריך שנבחר</span>
+      <span class="legend-item legend-disabled">חג / שבת</span>
+      <span class="legend-item legend-available">יום פנוי</span>
+    </div>
+    <div class="calendar-tip">
+      טיפ: השתמשו ב-Shift כדי לבחור טווח תאריכים ולחצו על X כדי להסיר תאריך מהרשימה.
+    </div>
+
+    <div class="calendar-actions">
+      <p-button class="btn btn-sm btn-outline-primary" (click)="resetToCurrentMonth()">
+        חזרה לחודש הנוכחי
+      </p-button>
+      <p-button class="btn btn-sm btn-outline-primary" (click)="showDialog()" [disabled]="!isValid">
+        קבע זמנים
+      </p-button>
+    </div>
   </div>
 
-  <div class="calendar-legend">
-    <span class="legend-item legend-selected">תאריך שנבחר</span>
-    <span class="legend-item legend-disabled">חג / שבת</span>
-    <span class="legend-item legend-available">יום פנוי</span>
-  </div>
-
-  <div class="calendar-actions">
-    <p-button class="btn btn-sm btn-outline-primary" (click)="resetToCurrentMonth()">
-      לחודש הנוכחי
-    </p-button>
-    <p-button class="btn btn-sm btn-outline-primary" (click)="showDialog()" [disabled]="!isValid">
-      קבעי זמנים
-    </p-button>
-  </div>
-</div>
-
-<div class="selected-dates-preview">
-  <h4>תאריכים שנבחרו:</h4>
-  <div *ngFor="let date of modelList" class="date-preview-item">
-    {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
-    <div class="holiday-tag" *ngIf="getHolidayLabel(date) as holidayName">
-      {{ holidayName }}
+  <div class="selected-dates-preview side-panel">
+    <h4>:תאריכים שנבחרו</h4>
+    <div class="selected-dates-scroll">
+      <div *ngFor="let date of modelList" class="date-preview-item">
+        <div class="date-line">
+          {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+          <button class="remove-date-btn" type="button" (click)="removeDate(date)" aria-label="Remove date">
+            X
+          </button>
+        </div>
+        <div class="holiday-tag" *ngIf="getHolidayLabel(date) as holidayName">
+          {{ holidayName }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -66,7 +78,12 @@
       <h3>תאריכים שנבחרו</h3>
       <div class="selected-dates">
         <div *ngFor="let date of modelList" class="date-item">
-          {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+          <div class="date-line">
+            {{ i18n.getDayNumerals(date) }} {{ i18n.getMonthFullName(date.month) }} {{ i18n.getYearNumerals(date.year) }}
+            <button class="remove-date-btn" type="button" (click)="removeDate(date)" aria-label="Remove date">
+              X
+            </button>
+          </div>
           <div class="holiday-tag" *ngIf="getHolidayLabel(date) as holidayName">
             {{ holidayName }}
           </div>
@@ -75,15 +92,18 @@
     </div>
 
     <div class="time-column">
-      <h3>קבעי שעות להשמעת הצלצולים</h3>
+      <h3>קבע שעות להשמעת הצלצולים</h3>
       <div class="time-selector-tabs">
-        <div class="manual-time-input">
-          <div class="time-fields">
-            <p-inputNumber [(ngModel)]="minutes" [min]="0" [max]="59" placeholder="דקות"></p-inputNumber>
-            <span>:</span>
-            <p-inputNumber [(ngModel)]="hours" [min]="0" [max]="23" placeholder="שעות"></p-inputNumber>
-          </div>
-          <button pButton icon="pi pi-plus" label="הוסיפי שעה" (click)="addTime()"></button>
+        <div class="manual-time-input pretty-time-picker">
+          <p-calendar
+            [(ngModel)]="selectedTime"
+            [timeOnly]="true"
+            [showIcon]="true"
+            inputId="timePicker"
+            hourFormat="24"
+            placeholder="בחר שעה"
+          ></p-calendar>
+          <button pButton icon="pi pi-plus" label="הוסף שעה" (click)="addTime()"></button>
         </div>
         <div class="selected-times">
           <h4>שעות שנבחרו</h4>
@@ -93,6 +113,60 @@
           </div>
         </div>
       </div>
+
+      <div class="ringtone-section">
+        <h4>בחירת צלצול</h4>
+        <div class="ringtone-options">
+          <label class="ringtone-option">
+            <input
+              type="radio"
+              name="ringtoneSource"
+              value="default"
+              [checked]="ringtoneSource === 'default'"
+              (change)="setRingtoneSource('default')"
+            />
+            <span class="option-label">רינגטון ברירת מחדל</span>
+            <select
+              class="ringtone-select"
+              *ngIf="ringtoneSource === 'default'"
+              [(ngModel)]="selectedRingtone"
+            >
+              <option *ngFor="let tone of defaultRingtones" [ngValue]="tone.id">
+                {{ tone.label }}
+              </option>
+            </select>
+          </label>
+
+          <label class="ringtone-option">
+            <input
+              type="radio"
+              name="ringtoneSource"
+              value="upload"
+              [checked]="ringtoneSource === 'upload'"
+              (change)="setRingtoneSource('upload')"
+            />
+            <span class="option-label">העלאת צלצול מהמחשב</span>
+          </label>
+
+          <div *ngIf="ringtoneSource === 'upload'" class="ringtone-upload">
+            <input type="file" accept="audio/*" (change)="onRingtoneFileSelected($event)" />
+            <span class="file-name" *ngIf="uploadedRingtoneName">{{ uploadedRingtoneName }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="dialog-actions">
+    <button
+      pButton
+      type="button"
+      class="p-button p-button-success"
+      label="שמור"
+      icon="pi pi-check"
+      [disabled]="!canSave"
+      (click)="saveSchedules()"
+    ></button>
+  </div>
 </p-dialog>
+

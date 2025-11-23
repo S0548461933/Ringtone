@@ -1,0 +1,250 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\models\\uploadringtoneresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\models\\uploadringtoneresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\models\\scheduleentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\models\\scheduleentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\schedules.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\schedules.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\ringtones.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\ringtones.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|solutionrelative:ringtones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\controllers\\ringtonescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\controllers\\ringtonescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21484C7E-7CBA-4FDC-9F0C-83DDBBD9371E}|Solution Items{21484C7E-7CBA-4FDC-9F0C-83DDBBD9371E}|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Playlists.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21484C7E-7CBA-4FDC-9F0C-83DDBBD9371E}|Solution Items{21484C7E-7CBA-4FDC-9F0C-83DDBBD9371E}|solutionrelative:ringtones\\Playlists.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\dailyringtonescharging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|solutionrelative:ringtones\\dailyringtonescharging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|d:\\ringtones\\server\\ringtones 0.0.0.3\\ringtones.api\\models\\ringtonescheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C60DDF-6EAF-4E1F-80D5-4ACE58D74BAE}|Ringtones.Api\\Ringtones.Api.csproj|solutionrelative:ringtones.api\\models\\ringtonescheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\manageringtonesjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|solutionrelative:ringtones\\manageringtonesjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\ringtone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|solutionrelative:ringtones\\ringtone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3192F34E-D7F6-4066-A058-05DA861E5B1A}|ringtones\\ringtones.csproj|solutionrelative:ringtones\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Ringtones\\bell\\bell\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScheduleEntry.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\ScheduleEntry.cs",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Models\\ScheduleEntry.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\ScheduleEntry.cs",
+              "RelativeToolTip": "Ringtones.Api\\Models\\ScheduleEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T23:25:50.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "schedules.json",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\schedules.json",
+              "RelativeDocumentMoniker": "Ringtones.Api\\schedules.json",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\schedules.json",
+              "RelativeToolTip": "Ringtones.Api\\schedules.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-22T23:25:49.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Ringtones.Api",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Ringtones.Api.csproj",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Ringtones.Api.csproj",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Ringtones.Api.csproj",
+              "RelativeToolTip": "Ringtones.Api\\Ringtones.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-22T23:25:47.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RingtonesController.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Controllers\\RingtonesController.cs",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Controllers\\RingtonesController.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Controllers\\RingtonesController.cs",
+              "RelativeToolTip": "Ringtones.Api\\Controllers\\RingtonesController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T18:13:31.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Program.cs",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Program.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Program.cs",
+              "RelativeToolTip": "Ringtones.Api\\Program.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwBUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T17:58:38.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DailyRingtonesCharging.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\DailyRingtonesCharging.cs",
+              "RelativeDocumentMoniker": "ringtones\\DailyRingtonesCharging.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\DailyRingtonesCharging.cs",
+              "RelativeToolTip": "ringtones\\DailyRingtonesCharging.cs",
+              "ViewState": "AgIAACQAAADAmZmZmZkwwBsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T16:59:06.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Playlists.json",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Playlists.json",
+              "RelativeDocumentMoniker": "ringtones\\Playlists.json",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Playlists.json",
+              "RelativeToolTip": "ringtones\\Playlists.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-27T16:59:06.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RingtoneScheduleDto.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\RingtoneScheduleDto.cs",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Models\\RingtoneScheduleDto.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\RingtoneScheduleDto.cs",
+              "RelativeToolTip": "Ringtones.Api\\Models\\RingtoneScheduleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T18:11:27.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UploadRingtoneResponse.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\UploadRingtoneResponse.cs",
+              "RelativeDocumentMoniker": "Ringtones.Api\\Models\\UploadRingtoneResponse.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\Ringtones.Api\\Models\\UploadRingtoneResponse.cs",
+              "RelativeToolTip": "Ringtones.Api\\Models\\UploadRingtoneResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T18:12:38.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Ringtones\\bell\\bell\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\bell\\bell\\Program.cs",
+              "ToolTip": "D:\\Ringtones\\bell\\bell\\Program.cs",
+              "RelativeToolTip": "..\\..\\bell\\bell\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T10:28:59.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Song.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Song.cs",
+              "RelativeDocumentMoniker": "ringtones\\Song.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Song.cs",
+              "RelativeToolTip": "ringtones\\Song.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAowCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T16:59:06.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Ringtone.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Ringtone.cs",
+              "RelativeDocumentMoniker": "ringtones\\Ringtone.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Ringtone.cs",
+              "RelativeToolTip": "ringtones\\Ringtone.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T16:59:06.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Program.cs",
+              "RelativeDocumentMoniker": "ringtones\\Program.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\Program.cs",
+              "RelativeToolTip": "ringtones\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T16:59:06.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ManageRingtonesJson.cs",
+              "DocumentMoniker": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\ManageRingtonesJson.cs",
+              "RelativeDocumentMoniker": "ringtones\\ManageRingtonesJson.cs",
+              "ToolTip": "D:\\Ringtones\\server\\ringtones 0.0.0.3\\ringtones\\ManageRingtonesJson.cs",
+              "RelativeToolTip": "ringtones\\ManageRingtonesJson.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T16:59:06.933Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

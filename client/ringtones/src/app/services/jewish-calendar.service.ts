@@ -3,19 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // אפשר לשים את ה־DTO פה, או בקובץ נפרד
-export interface RingtoneScheduleDto {
-  year: number;
-  month: number;
-  day: number;
-  time: string;           // "HH:MM"
-  ringtoneId?: number | null;
+export interface ScheduleEntry {
+  date: string;        // "YYYY-MM-DD"
+  time: string;        // "HH:mm"
+  ringtoneFile: string;
 }
+
+export interface UploadRingtoneResponse {
+  fileName: string;
+  relativePath: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class JewishCalendarService {
-
+  private baseUrlRingtones = 'https://localhost:7240/api/ringtones'; 
   constructor(private http: HttpClient) { }
 
   // כתובת ה־API של הלוח
@@ -34,16 +38,16 @@ getJewishCalendar(): Observable<any> {
 }
 
 
-  // 🔹 זו הפונקציה שהקומפוננטה שלך מחפשת
-  private baseUrlRingtones = '/api/ringtones'; // תעדכני בהתאם לשרת שלך
 
-  saveRingtones(schedules: RingtoneScheduleDto[]): Observable<void> {
-    // אם יש לך API בצד השרת:
-    return this.http.post<void>(this.baseUrlRingtones, schedules);
+  saveRingtones(schedules: ScheduleEntry[]): Observable<any> {
+  return this.http.post<any>(`${this.baseUrlRingtones}/schedules`, schedules);
+}
 
-    // אם כרגע אין API מוכן ואת רק רוצה שלא יהיו שגיאות קומפילציה,
-    // אפשר זמנית לעשות:
-    // console.log('Mock saveRingtones', schedules);
-    // return of(void 0);
-  }
+
+  uploadRingtone(file: File): Observable<UploadRingtoneResponse> {
+  const formData  = new FormData();
+  formData .append('file', file);
+  return this.http.post<UploadRingtoneResponse>(`${this.baseUrlRingtones}/upload`, formData);
+}
+
 }
